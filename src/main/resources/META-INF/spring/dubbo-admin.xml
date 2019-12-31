@@ -16,30 +16,18 @@
             </list>
         </property>
     </bean>
-
     <dubbo:application name="dubbo-admin"/>
-
     <dubbo:registry address="${dubbo.registry.address}" group="${dubbo.registry.group}" check="false" file="false"/>
-
     <dubbo:reference id="registryService" interface="com.alibaba.dubbo.registry.RegistryService" check="false"/>
-
     <bean id="configService" class="com.alibaba.dubbo.governance.service.impl.ConfigServiceImpl"/>
-
     <bean id="consumerService" class="com.alibaba.dubbo.governance.service.impl.ConsumerServiceImpl"/>
-
     <bean id="overrideService" class="com.alibaba.dubbo.governance.service.impl.OverrideServiceImpl"/>
-
     <bean id="ownerService" class="com.alibaba.dubbo.governance.service.impl.OwnerServiceImpl"/>
-
     <bean id="providerService" class="com.alibaba.dubbo.governance.service.impl.ProviderServiceImpl"/>
-
     <bean id="routeService" class="com.alibaba.dubbo.governance.service.impl.RouteServiceImpl"/>
-
     <bean id="userService" class="com.alibaba.dubbo.governance.service.impl.UserServiceImpl">
         <property name="rootPassword" value="${dubbo.admin.root.password}"/>
         <property name="guestPassword" value="${dubbo.admin.guest.password}"/>
     </bean>
-
     <bean id="governanceCache" class="com.alibaba.dubbo.governance.sync.RegistryServerSync"/>
-
 </beans>

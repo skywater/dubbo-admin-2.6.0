@@ -26,6 +26,8 @@
 		<jetty_version>6.1.26</jetty_version>
 		<eclipse.useProjectReferences>false</eclipse.useProjectReferences>
 		<skip_maven_deploy>false</skip_maven_deploy>
+		<docker.image.prefix>nuggets</docker.image.prefix>
+		<docker.registry>registry.cn-shanghai.aliyuncs.com</docker.registry>
 	</properties>
 	<!-- Fix webx 3.x not compatible with spring 4.x or higher -->
 	<dependencyManagement>
@@ -188,6 +190,18 @@
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<configuration>
+					<repository>${docker.registry}/${docker.image.prefix}/${project.artifactId}</repository>
+ 					<!-- <tag>${project.version}</tag> 不指定tag默认为latest -->
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.war</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
