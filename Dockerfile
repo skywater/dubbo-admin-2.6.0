@@ -29,5 +29,5 @@ COPY --from=build /etc/localtime /etc/localtime
 WORKDIR /usr/local/tomcat/webapps
 ARG version=2.0.0
 RUN rm -rf ROOT
-COPY --from=build /src/dubbo-admin/target/dubbo-admin-${version}.war .
+COPY --from=build /src/dubbo-admin-2.6.0/target/dubbo-admin-${version}.war .
 RUN mv dubbo-admin-${version}.war ROOT.war
